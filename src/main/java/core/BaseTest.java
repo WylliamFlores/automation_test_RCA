@@ -4,9 +4,9 @@ import static core.DriverFactory.getDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestName;
@@ -19,9 +19,9 @@ public class BaseTest {
 	public void initializeDriver() {
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Users\\Informatica\\eclipse-workspace\\driver\\chromedriver.exe");
-		getDriver().get("http://automationpractice.com/index.php?id_category=3&controller=category");
 		DriverFactory.getDriver().manage().window().maximize();
-		DriverFactory.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+		getDriver().get("http://automationpractice.com/index.php?id_category=3&controller=category");
+//		DriverFactory.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 	}
 
 	@Rule

@@ -4,9 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import core.BasePage;
 import core.DriverFactory;
 
-public class MenuHorizontalPage {
+public class MenuHorizontalPage extends BasePage {
 
 	public void moveMouseOpenMenu(String text) {
 		Actions action = new Actions(DriverFactory.getDriver());
@@ -16,6 +17,6 @@ public class MenuHorizontalPage {
 	}
 
 	public void menuWomenSelectOption(String text) {
-		DriverFactory.getDriver().findElement(By.xpath("//ul//a[text()='" + text + "']")).click();
+		click_xpath("//ul//a[text()='" + text + "']");
 	}
 }
