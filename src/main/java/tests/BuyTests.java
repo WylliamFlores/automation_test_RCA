@@ -77,5 +77,6 @@ public class BuyTests extends BaseTest {
 		addressPage.addCommentAboutOrder("deliver from 13h to 18h");
 		addressPage.clickProceedCheckout();	
 		shippingPage.checkTermsOfService();
+		shippingPage.clickProceedCheckout();
 	}
 }
