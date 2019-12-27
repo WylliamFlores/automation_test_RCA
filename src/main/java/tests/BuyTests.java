@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.support.ui.Wait;
 
 import core.BaseTest;
 import pages.CartSummaryPage;
@@ -29,11 +28,13 @@ public class BuyTests extends BaseTest {
 	PaymentPage paymentPage = new PaymentPage();
 
 	@Test
-	public void buySuccessfully() throws InterruptedException {
+	public void buySuccessfully() {
 		// Choice and add products to cart
 		menuPage.moveMouseOpenMenu("Women"); // Options: Women, Dresses or T-shirts
 		menuPage.menuWomenSelectOption("Summer Dresses"); // Options: T-shirts, Blouses, Casual Dresses, Evening, Dresses, Summer Dresses
+		listProductPage.waitProductListProcessing();
 		listProductPage.selectProductAndOptions("Printed Chiffon Dress", "More"); // Options: Add to cart, More, Quick view
+		productPage.waitProductProcessing();
 		productPage.setQuantity("2");
 		productPage.selectSize("M");
 		productPage.clickButtonAddToCart();

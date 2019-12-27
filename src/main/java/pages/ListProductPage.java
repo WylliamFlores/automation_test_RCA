@@ -18,4 +18,8 @@ public class ListProductPage extends BasePage {
 		click_xpath(
 				"//div[@class='right-block']//a[@title='" + product + "']/../../..//a//span[text()='" + option + "']");
 	}
+
+	public void waitProductListProcessing() {
+		wait_visibilityOfAllElementsLocatedBy("//ul[@class='product_list grid row']");
+	}
 }

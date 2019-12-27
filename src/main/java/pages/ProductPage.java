@@ -1,11 +1,5 @@
 package pages;
 
-import static core.DriverFactory.getDriver;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import core.BasePage;
 
 public class ProductPage extends BasePage {
@@ -27,7 +21,10 @@ public class ProductPage extends BasePage {
 	}
 
 	public void waitCartProcessing() {
-		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//a[@title='Proceed to checkout']")));
+		wait_visibilityOfAllElementsLocatedBy("//a[@title='Proceed to checkout']");
+	}
+
+	public void waitProductProcessing() {
+		wait_visibilityOfAllElementsLocatedBy("//div[@class='primary_block row']");
 	}
 }
