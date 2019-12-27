@@ -1,6 +1,12 @@
 package pages;
 
+import static core.DriverFactory.getDriver;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -72,10 +78,6 @@ public class RegisterCustomerPage extends BasePage {
 		write_id("address1", text);
 	}
 
-	public void yourAdressSetAddress2(String text) {
-		write_id("address2", text);
-	}
-
 	public void yourAdressSetCity(String text) {
 		write_id("city", text);
 	}
@@ -110,5 +112,14 @@ public class RegisterCustomerPage extends BasePage {
 
 	public void clickRegister() {
 		click_xpath("//button[@name='submitAccount']");
+	}
+
+	public List<String> verifyRequiredFields() {
+		List<WebElement> errors = getDriver().findElements(By.xpath("//div[@class='alert alert-danger']//li"));
+		List<String> variable = new ArrayList<String>();
+		for (WebElement error : errors) {
+			variable.add(error.getText());
+		}
+		return variable;
 	}
 }
