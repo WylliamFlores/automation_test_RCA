@@ -4,6 +4,7 @@ import static core.DriverFactory.getDriver;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -20,8 +21,10 @@ public class RegisterCustomerPage extends BasePage {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("uniform-id_gender1")));
 	}
 
-	public void setEmailForCreateAccount(String text) {
-		write_id("email_create", text);
+	public void setEmailRandomForCreateAccount() {
+		Random randomGenerator = new Random();
+		int randomInt = randomGenerator.nextInt(10000);
+		write_id("email_create", "email" + randomInt + "@gmail.com");
 	}
 
 	public void clickCreateAccount() {

@@ -35,7 +35,7 @@ public class BuyTests extends BaseTest {
 		Assert.assertEquals("Printed Chiffon Dress", summaryPage.verifykProductCart());
 		// Register Customer
 		summaryPage.clickProceedCheckout();
-		registerCustomerPage.setEmailForCreateAccount("email@teste.com");
+		registerCustomerPage.setEmailRandomForCreateAccount();
 		registerCustomerPage.clickCreateAccount();
 		registerCustomerPage.waitFormPersonalInformation();
 		registerCustomerPage.clickRegister();
@@ -64,6 +64,6 @@ public class BuyTests extends BaseTest {
 		registerCustomerPage.yourAdressSetHomePhone("3333-3333");
 		registerCustomerPage.yourAdressSetMobilePhone("9999-9999");
 		registerCustomerPage.setAlternateAddress("Canada");
-//		registerCustomerPage.clickRegister();
+		registerCustomerPage.clickRegister();
 	}
 }
