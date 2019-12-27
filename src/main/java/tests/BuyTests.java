@@ -41,6 +41,7 @@ public class BuyTests extends BaseTest {
 		productPage.waitCartProcessing();
 		productPage.clickButtonProccedCheckout();
 		Assert.assertEquals("Printed Chiffon Dress", summaryPage.verifykProductCart());
+		summaryPage.screenshot("verifykProductCart");
 		// Register Customer
 		summaryPage.clickProceedCheckout();
 		registerCustomerPage.setEmailRandomForCreateAccount();
@@ -78,12 +79,14 @@ public class BuyTests extends BaseTest {
 		Assert.assertTrue(
 				text.containsAll(Arrays.asList("YOUR DELIVERY ADDRESS", "Wylliam Flores", "Ltda", "37 E. Victoria St",
 						"Santa Barbara, California 93101", "United States", "3333-3333", "9999-9999", "Update")));
+		addressPage.screenshot("verifyDeliveryAddress");
 		addressPage.addCommentAboutOrder("deliver from 13h to 18h");
 		addressPage.clickProceedCheckout();
 		shippingPage.checkTermsOfService();
 		shippingPage.clickProceedCheckout();
 		// Payment
 		Assert.assertEquals("$34.80", paymentPage.verifyTotalBuyValue());
+		paymentPage.screenshot("verifyTotalBuyValue");
 		paymentPage.selectPaymentMethod("Pay by check."); // Options: Pay by bank wire, Pay by check.
 		paymentPage.clickConfirmMyOrder();
 		Assert.assertEquals("Your order on My Store is complete.", paymentPage.verifyBuyWasSuccessful());

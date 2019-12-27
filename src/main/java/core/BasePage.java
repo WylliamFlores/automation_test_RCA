@@ -2,7 +2,13 @@ package core;
 
 import static core.DriverFactory.getDriver;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -45,9 +51,19 @@ public class BasePage {
 	public void clickCheck_id(String id) {
 		getDriver().findElement(By.id(id)).click();
 	}
-	
+
 	public void wait_visibilityOfAllElementsLocatedBy(String xpath) {
 		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(xpath)));
+	}
+
+	public void screenshot(String name) {
+		TakesScreenshot ss = (TakesScreenshot) getDriver();
+		File archive = ss.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(archive, new File("src/main/java/screenshot/" + name + ".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
