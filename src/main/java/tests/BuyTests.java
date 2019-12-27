@@ -5,16 +5,15 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 
 import core.BaseTest;
-import core.DriverFactory;
 import pages.CartSummaryPage;
 import pages.DeliveryAddressesPage;
 import pages.ListProductPage;
 import pages.MenuHorizontalPage;
 import pages.ProductPage;
 import pages.RegisterCustomerPage;
+import pages.ShippingPage;
 
 public class BuyTests extends BaseTest {
 
@@ -24,6 +23,7 @@ public class BuyTests extends BaseTest {
 	CartSummaryPage summaryPage = new CartSummaryPage();
 	RegisterCustomerPage registerCustomerPage = new RegisterCustomerPage();
 	DeliveryAddressesPage addressPage = new DeliveryAddressesPage();
+	ShippingPage shippingPage = new ShippingPage();
 
 	@Test
 	public void buySuccessfully() {
@@ -75,6 +75,7 @@ public class BuyTests extends BaseTest {
 				"Wylliam Flores", "Ltda", "37 E. Victoria St", "Santa Barbara, California 93101",
 				"United States", "3333-3333", "9999-9999", "Update")));
 		addressPage.addCommentAboutOrder("deliver from 13h to 18h");
-		addressPage.clickProceedCheckout();		
+		addressPage.clickProceedCheckout();	
+		shippingPage.checkTermsOfService();
 	}
 }
