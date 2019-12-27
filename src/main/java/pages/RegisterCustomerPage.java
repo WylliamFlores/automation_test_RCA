@@ -12,12 +12,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import core.BasePage;
-import core.DriverFactory;
 
 public class RegisterCustomerPage extends BasePage {
 
 	public void waitFormPersonalInformation() {
-		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), 5);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("uniform-id_gender1")));
 	}
 

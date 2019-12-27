@@ -20,14 +20,13 @@ public class BaseTest {
 		System.setProperty("webdriver.chrome.driver",
 				"C:\\Users\\Informatica\\eclipse-workspace\\driver\\chromedriver.exe");
 		DriverFactory.getDriver().manage().window().maximize();
-		getDriver().get("http://automationpractice.com/index.php?id_category=3&controller=category");
-//		DriverFactory.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+		getDriver().get("http://automationpractice.com/");
 	}
 
 	@Rule
 	public TestName testName = new TestName();
 
-//	@After
+	@After
 	public void ScreenshotAndFinalizeDriver() throws IOException {
 		TakesScreenshot ss = (TakesScreenshot) getDriver();
 		File archive = ss.getScreenshotAs(OutputType.FILE);

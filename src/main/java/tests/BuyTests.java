@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.support.ui.Wait;
 
 import core.BaseTest;
 import pages.CartSummaryPage;
 import pages.DeliveryAddressesPage;
 import pages.ListProductPage;
 import pages.MenuHorizontalPage;
+import pages.PaymentPage;
 import pages.ProductPage;
 import pages.RegisterCustomerPage;
 import pages.ShippingPage;
@@ -24,9 +26,10 @@ public class BuyTests extends BaseTest {
 	RegisterCustomerPage registerCustomerPage = new RegisterCustomerPage();
 	DeliveryAddressesPage addressPage = new DeliveryAddressesPage();
 	ShippingPage shippingPage = new ShippingPage();
+	PaymentPage paymentPage = new PaymentPage();
 
 	@Test
-	public void buySuccessfully() {
+	public void buySuccessfully() throws InterruptedException {
 		// Choice and add products to cart
 		menuPage.moveMouseOpenMenu("Women"); // Options: Women, Dresses or T-shirts
 		menuPage.menuWomenSelectOption("Summer Dresses"); // Options: T-shirts, Blouses, Casual Dresses, Evening, Dresses, Summer Dresses
@@ -42,7 +45,7 @@ public class BuyTests extends BaseTest {
 		registerCustomerPage.setEmailRandomForCreateAccount();
 		registerCustomerPage.clickCreateAccount();
 		registerCustomerPage.waitFormPersonalInformation();
-		registerCustomerPage.clickRegister();	
+		registerCustomerPage.clickRegister();
 		List<String> errors = registerCustomerPage.verifyRequiredFields();
 		Assert.assertTrue(errors.containsAll(Arrays.asList("You must register at least one phone number.",
 				"lastname is required.", "firstname is required.", "passwd is required.", "address1 is required.",
@@ -71,12 +74,17 @@ public class BuyTests extends BaseTest {
 		registerCustomerPage.clickRegister();
 		// Delivery Address
 		List<String> text = addressPage.verifyDeliveryAddress();
-		Assert.assertTrue(text.containsAll(Arrays.asList("YOUR DELIVERY ADDRESS",
-				"Wylliam Flores", "Ltda", "37 E. Victoria St", "Santa Barbara, California 93101",
-				"United States", "3333-3333", "9999-9999", "Update")));
+		Assert.assertTrue(
+				text.containsAll(Arrays.asList("YOUR DELIVERY ADDRESS", "Wylliam Flores", "Ltda", "37 E. Victoria St",
+						"Santa Barbara, California 93101", "United States", "3333-3333", "9999-9999", "Update")));
 		addressPage.addCommentAboutOrder("deliver from 13h to 18h");
-		addressPage.clickProceedCheckout();	
+		addressPage.clickProceedCheckout();
 		shippingPage.checkTermsOfService();
 		shippingPage.clickProceedCheckout();
+		// Payment
+		Assert.assertEquals("$34.80", paymentPage.verifyTotalBuyValue());
+		paymentPage.selectPaymentMethod("Pay by check."); // Options: Pay by bank wire, Pay by check.
+		paymentPage.clickConfirmMyOrder();
+		Assert.assertEquals("Your order on My Store is complete.", paymentPage.verifyBuyWasSuccessful());
 	}
 }

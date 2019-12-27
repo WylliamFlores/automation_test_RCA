@@ -6,12 +6,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import tests.BuyTests;
 
-
-
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	BuyTests.class,
-})
+	BuyTests.class, })
 
 public class SuiteTest {
 
