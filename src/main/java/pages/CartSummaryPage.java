@@ -4,7 +4,7 @@ import core.BasePage;
 
 public class CartSummaryPage extends BasePage {
 
-	public String checkProductCart() {
+	public String verifykProductCart() {
 		return getText("//table[@id='cart_summary']//*[text()='Printed Chiffon Dress']");
 	}
 

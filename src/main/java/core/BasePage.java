@@ -9,8 +9,13 @@ import org.openqa.selenium.support.ui.Select;
 public class BasePage {
 
 	public void write_id(String id, String text) {
-		DriverFactory.getDriver().findElement(By.id(id)).clear();
+		getDriver().findElement(By.id(id)).clear();
 		getDriver().findElement(By.id(id)).sendKeys(text);
+	}
+
+	public void write_xpath(String xpath, String text) {
+		getDriver().findElement(By.xpath(xpath)).clear();
+		getDriver().findElement(By.xpath(xpath)).sendKeys(text);
 	}
 
 	public void selectCombo_id(String id, String value) {
@@ -26,8 +31,16 @@ public class BasePage {
 	public void click_xpath(String xpath) {
 		getDriver().findElement(By.xpath(xpath)).click();
 	}
-	
+
 	public String getText(String xpath) {
 		return getDriver().findElement(By.xpath(xpath)).getText();
+	}
+
+	public void clickRadio_id(String id) {
+		getDriver().findElement(By.id(id)).click();
+	}
+
+	public void clickCheck_id(String id) {
+		getDriver().findElement(By.id(id)).click();
 	}
 }
