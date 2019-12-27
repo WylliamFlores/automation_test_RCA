@@ -1,14 +1,10 @@
 # automation_test_RCA
-Technical Proof: Functional Tests
+## Technical Proof: Functional Tests
 
-Technologies/ Frameworks/ Libraries used:
+### Technologies/ Frameworks/ Libraries used:
 
-Maven Project
-
-Eclipse IDE
-
-Selenium WebDriver
-
-Java
-
-JUnit
+* Maven Project
+* Eclipse IDE
+* Selenium WebDriver
+* Java
+* JUnit
